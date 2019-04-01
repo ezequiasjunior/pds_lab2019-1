@@ -1,8 +1,0 @@
-{
-    "python.pythonPath": "/home/junior/anaconda3/bin/python",
-    "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true,
-    "editor.fontFamily": "Inconsolata",
-    "editor.fontSize": 18,
-    "workbench.iconTheme": "vscode-icons"
-}
