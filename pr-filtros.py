@@ -40,7 +40,7 @@ Y = 2*np.abs(fft(audioL))/audioL.size
 plt.figure('audio fft')
 plt.title('Espectro do sinal de audio')
 plt.xlabel('Frequência [Hz]')
-plt.ylabel('|Y(j$\omega$)|')
+plt.ylabel('|Y(j_omega)|')
 plt.plot(freq, Y, 'C0-')
 plt.xlim(0, rate/2)
 plt.show()
@@ -110,7 +110,7 @@ print('Freqência de corte: {} Hz'.format(w_c*0.5*rate/np.pi))
 # Tamanho da sequência do filtro:
 # Cálculo feito a partir da relação da frequência de transição com o tamanho
 # da sequência e um parâmetro característico da janela: M*df = c
-# De acordo com a tabela 7.1, para janela de hamming: c = 11pi
+# De acordo com a tabela 7.1, para janela de hamming: c = 6.6pi
 M = int(np.ceil(6.6*np.pi/tr_width) + 1)
 print('Tamanho da Janela calculado: {}'.format(M))
 
@@ -158,7 +158,7 @@ Y_fir = 2*np.abs(fft(audioL_fir))/audioL_fir.size
 plt.figure('audio filtrado FIR fft')
 plt.title('Espectro do sinal de audio')
 plt.xlabel('Frequência [Hz]')
-plt.ylabel('|Y(j$\omega$)|')
+plt.ylabel('|Y(j_omega)|')
 plt.plot(freq_fir, Y_fir, 'C0-')
 plt.xlim(0, rate/2)
 plt.show()
@@ -174,4 +174,12 @@ plt.xlim(0, rate/2)
 plt.show()
 
 #%%
-#%%
+# bode e phase, rascunho
+import control
+sys = control.tf(h_fir, [1], 1)
+mag, phase, om = control.bode(sys)
+
+#%%S
+# Projeto do filtro IIR:
+# Especificações contínuo:S
+
