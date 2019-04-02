@@ -179,6 +179,26 @@ import control
 sys = control.tf(h_fir, [1], 1)
 mag, phase, om = control.bode(sys)
 
+#%%
+# cascata:
+so=signal.tf2sos(h_fir[::-1],1)
+h_so=signal.sosfilt(so, audioL)
+
+freq_fir = fftfreq(h_so.size) * rate
+Y_fir = 2*np.abs(fft(h_so))/h_so.size
+plt.figure('audio filtrado FIR fft')
+plt.title('Espectro do sinal de audio')
+plt.xlabel('Frequência [Hz]')
+plt.ylabel('|Y(j_omega)|')
+plt.plot(freq_fir, Y_fir, 'C0-')
+plt.xlim(0, rate/2)
+plt.show()
+
+h_firw, h_firjw = signal.sosfreqz(so)
+plt.figure('FIR-freqr')
+plt.plot(h_firw, 20*np.log10(np.abs(h_firjw)))
+plt.show()
+
 #%%S
 # Projeto do filtro IIR:
 # Especificações contínuo:S
