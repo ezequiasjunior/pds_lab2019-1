@@ -6,3 +6,4 @@ Práticas da disciplina Laboratório de Processamento de Sinais para Comunicaç�
 
 - Amostragem
 - Projeto de filtros
+- Filtros adaptativos
